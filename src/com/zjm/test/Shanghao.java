@@ -39,10 +39,11 @@ public class Shanghao{
 		String fileName = file.getName();
 		fileName = fileName.substring(0, fileName.indexOf("."));
 		System.out.println(fileName);
+		File parent = new File(filePath.substring(0, filePath.lastIndexOf("/") + 1) + fileName);
 		if (arrayList.size() > 0) {
 			for(int i = 0; i < arrayList.size(); i++){
 				JSONArray eachArray = arrayList.get(i);
-				File writeToFile = new File(filePath.substring(0, filePath.lastIndexOf("/") + 1) + fileName + "/" + i);
+				File writeToFile = new File(parent, "" + i);
 				if (!writeToFile.exists()) {
 					System.out.println(writeToFile.getAbsolutePath());
 					writeToFile.mkdirs();
@@ -58,7 +59,7 @@ public class Shanghao{
 		}
 		if (array.size() > 0) {
 			// 将剩余的个数放到一个新的文件夹下
-			File writeToFile = new File(filePath.substring(0, filePath.lastIndexOf("/") + 1) + fileName + "/" + arrayList.size());
+			File writeToFile = new File(parent, "" + arrayList.size());
 			if (!writeToFile.exists()) {
 				System.out.println(writeToFile.getAbsolutePath());
 				writeToFile.mkdirs();
